@@ -1,0 +1,36 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: generate-hpa
+spec:
+  generateExisting: true
+  rules:
+    - name: create-for-podcontrollers
+      match:
+        any:
+        - resources:
+            kinds:
+              - Deployment      
+              - StatefulSet
+      generate:
+        synchronize: true
+        kind: HorizontalPodAutoscaler
+        apiVersion: autoscaling/v2
+        name: "{{request.object.metadata.name}}-kyverno" 
+        namespace: "{{request.object.metadata.namespace}}"
+        data:
+          spec:
+            scaleTargetRef:
+              apiVersion: "{{request.object.apiVersion}}"
+              kind: "{{request.object.kind}}"
+              name: "{{request.object.metadata.name}}"
+            minReplicas: 1
+            maxReplicas: 3
+            metrics:
+            - type: Resource
+              resource:
+                name: cpu
+                target:
+                  type: Utilization
+                  averageUtilization: 75
+

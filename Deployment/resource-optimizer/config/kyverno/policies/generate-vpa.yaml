@@ -13,6 +13,8 @@ spec:
             kinds:
               - Deployment      
               - StatefulSet
+            namespaces:
+              - demo-kyverno-vpa
       generate:
         synchronize: true
         kind: VerticalPodAutoscaler

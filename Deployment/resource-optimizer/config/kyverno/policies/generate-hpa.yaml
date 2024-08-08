@@ -12,6 +12,8 @@ spec:
             kinds:
               - Deployment      
               - StatefulSet
+             namespaces:
+              - kyverno-test
       generate:
         synchronize: true
         kind: HorizontalPodAutoscaler

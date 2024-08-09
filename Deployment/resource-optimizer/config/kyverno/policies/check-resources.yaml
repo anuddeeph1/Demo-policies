@@ -4,7 +4,7 @@ kind: ClusterPolicy
 metadata:
   name: check-resources
 spec:
-  validationFailureAction: Audit
+  validationFailureAction: audit
   background: true
   admission: false
   rules:

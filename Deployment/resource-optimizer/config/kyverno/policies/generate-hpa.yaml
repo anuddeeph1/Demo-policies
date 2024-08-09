@@ -12,7 +12,7 @@ spec:
             kinds:
               - Deployment      
               - StatefulSet
-             namespaces:
+            namespaces:
               - demo-kyverno-vpa
       generate:
         synchronize: true

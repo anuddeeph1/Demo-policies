@@ -73,7 +73,7 @@ The [Kubernetes VerticalPodAutoscaler](https://kubernetes.io/docs/concepts/workl
 For this solution, we only need the `VPA Recommender`. You can install it by executing:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/nirmata/resource-optimizer/main/config/vpa/install-vpa-recommender.yaml
+kubectl apply -f https://raw.githubusercontent.com/anuddeeph1/POV-policies/main/Deployment/resource-optimizer/config/vpa/install-vpa-recommender.yaml
 ```
 
 Alternatively, you can use this [helm chart](https://artifacthub.io/packages/helm/fairwinds-stable/vpa) to install, but make sure you customize the arguments correctly.
@@ -118,7 +118,7 @@ The policies are configured to
 Install a workload:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/anuddeeph1/POV-policies/main/Deployment/resource-optimizer/config/vpa/install-vpa-recommender.yaml
+kubectl apply -f https://raw.githubusercontent.com/anuddeeph1/POV-policies/main/Deployment/resource-optimizer/config/workload/demo-kyverno-vpa-hpa.yaml
 ```
 
 The VPA will start providing recommendations after around 60s:

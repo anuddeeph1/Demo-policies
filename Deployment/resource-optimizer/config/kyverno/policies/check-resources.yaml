@@ -2,6 +2,11 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
+  annotations:
+    policies.kyverno.io/title: check resources 
+    policies.kyverno.io/category: Resource Optimisation
+    policies.kyverno.io/subject: Check Resources
+    policies.kyverno.io/minversion: 1.10.0
   name: check-resources
 spec:
   validationFailureAction: audit

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: good-deployment-restrict-image
+  labels:
+    app: busybox
+  namespace: kyverno-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - image: docker.io/busybox:1.36.1   #registry.k8s.io/nginx:1.7.9
+        name: busybox
+        command: ["sleep", "9999"]
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "0.5"
+          limits:
+            memory: "256Mi"
+            cpu: "1"

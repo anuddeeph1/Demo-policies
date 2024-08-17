@@ -18,6 +18,8 @@ spec:
       containers:
       - image: docker.io/busybox:1.36.1
         name: busybox
+        securityContext:
+          runAsNonRoot: true
         command: ["sleep", "9999"]
         resources:
           requests:

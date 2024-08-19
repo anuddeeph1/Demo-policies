@@ -3,28 +3,42 @@ kind: Deployment
 metadata:
   name: good-deployment-labels
   labels:
-    app: busybox
+    app: nginx5
   namespace: kyverno-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: busybox
+      app: nginx5
   template:
     metadata:
       labels:
-        app: busybox
+        app: nginx5
     spec:
       containers:
-      - image: docker.io/bitnami/apache:2.4
-        name: busybox
+      - image: docker.io/nginxinc/nginx-unprivileged:1.21
+        ports:
+        - containerPort: 8080
+        name: nginx5
         securityContext:
           runAsNonRoot: true
-        command: ["sleep", "9999"]
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "0.5"
+            memory: "128Mi"
+            cpu: "250m"
           limits:
             memory: "256Mi"
-            cpu: "1"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service5
+spec:
+  selector:
+    app: nginx5
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer

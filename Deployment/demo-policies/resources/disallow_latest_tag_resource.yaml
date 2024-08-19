@@ -22,7 +22,6 @@ spec:
         - containerPort: 8080
         securityContext:
           runAsNonRoot: true
-        command: ["sleep", "9999"]
         resources:
           requests:
             memory: "128Mi"

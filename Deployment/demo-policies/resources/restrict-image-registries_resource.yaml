@@ -3,28 +3,42 @@ kind: Deployment
 metadata:
   name: good-deployment-restrict-image
   labels:
-    app: busybox
+    app: nginx7
   namespace: kyverno-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: busybox
+      app: nginx7
   template:
     metadata:
       labels:
-        app: busybox
+        app: nginx7
     spec:
       containers:
-      - image: docker.io/bitnami/apache:2.4   #registry.k8s.io/nginx:1.7.9
-        name: busybox
-        command: ["sleep", "9999"]
+      - image: docker.io/nginxinc/nginx-unprivileged:1.21   #registry.k8s.io/nginx:1.7.9
+        ports:
+        - containerPort: 8080  
+        name: nginx7
         securityContext:
           runAsNonRoot: true
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "0.5"
+            memory: "128Mi"
+            cpu: "250m"
           limits:
             memory: "256Mi"
-            cpu: "1"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service7
+spec:
+  selector:
+    app: nginx7
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer

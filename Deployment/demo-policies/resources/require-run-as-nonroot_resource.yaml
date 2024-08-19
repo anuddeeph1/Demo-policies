@@ -20,8 +20,8 @@ spec:
         name: nginx4
         ports:
         - containerPort: 8080
-        #securityContext:
-        #  runAsNonRoot: true
+        securityContext:
+          runAsNonRoot: true
         resources:
           requests:
             memory: "128Mi"

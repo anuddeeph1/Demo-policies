@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: remediate-capabilities-baseline
+  name: remediate-disallow-capabilities
   annotations:
     policies.kyverno.io/title: Remediate Capabilities Baseline
     policies.kyverno.io/category: Pod Security Standards (Baseline)

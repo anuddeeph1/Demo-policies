@@ -39,15 +39,15 @@ spec:
                   containers:
                     - (name): "{{ element.name }}"
                       securityContext:
-                        (runAsUser): null
+                        (runAsUser): 0
                         runAsUser: 1000
                   initContainers:
                     - (name): "{{ element.name }}"
                       securityContext:
-                        (runAsUser): null
+                        (runAsUser): 0
                         runAsUser: 1000
                   ephemeralContainers:
                     - (name): "{{ element.name }}"
                       securityContext:
-                        (runAsUser): null
+                        (runAsUser): 0
                         runAsUser: 1000
